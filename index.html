@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Know your DePauw!</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="checkbox.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet' type='text/css'>
+  <script src="jquery-3.6.0.min.js"></script>
+  <script src="glfx.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <div id="instructions-overlay">
+    <div id="instructions">
+      <p>You have 60 seconds each round, where you will be presented a picture of a campus building. The picture will slowly go from being transformed to its original form.</p>
+      <div style="display: flex; flex-direction: row;">
+        <div style="width: 10em; height: 10em; overflow: hidden;">
+          <img src="img/example/original.jpg" style="width: auto; height: 100%; animation: rotate 10s ease infinite">
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
+          <div class="select-button" style="font-weight: normal; background-color: #00FF00; padding: 0.5em;">East College</div>
+          <div class="select-button" style="font-weight: normal; background-color: red; padding: 0.5em">Union Building</div>
+        </div>
+      </div>
+      <p>Guess the right location to earn points. The faster you guess correctly, the more points you will get!</p>
+      <div id="back-button">Got it!</div>
+    </div>
+  </div>
+  <div id="form">
+    <form>
+      <div style="display: flex;flex-direction: row; justify-content: center;">
+        <b style="font-size: 2em;">Know your <span style="color: yellow; font-size: 1em;  text-shadow: 0px 0px 5px black, 0px 0px 10px black;">DePauw</span> !</b>
+        <div id="how-to-play" class="fa fa-question-circle"></div>
+      </div>
+      <div class="form-title">
+          <b style="align-self:center; font-size: 1.5em;">Select your transformations</b>
+        <div style="display:flex;">
+          <div id="select-all" class="select-button">Select All</div>
+          <div id="deselect-all" class="select-button">Deselect All</div>
+        </div>
+      </div>
+      <div class="grid">
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="rotate" checked="true">
+            <span class="checkmark"></span>Rotated
+          </div>
+          <div style="overflow: hidden;width: 50%;">
+            <img style="width: 100%; height:auto; animation: rotate 10s ease infinite" src="./img/example/original.jpg">
+          </div>
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="zoom_out" checked="true">
+            <span class="checkmark"></span>Zoomed In
+          </div>
+          <div style="overflow: hidden;width: 50%;">
+            <img style="width: 100%; height:auto; animation: zoom_out 10s ease infinite" src="./img/example/original.jpg">
+          </div>
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="zoom_in" checked="true">
+            <span class="checkmark"></span>Zoomed Out
+          </div>
+          <div style="overflow: hidden;width: 50%;">
+            <img style="width: 100%; height:auto; animation: zoom_in 10s ease infinite" src="./img/example/original.jpg">
+          </div>
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="brightness" checked="true">
+            <span class="checkmark"></span>Dimmed
+          </div>
+          <img class="example-image" id="brightness" src="./img/example/original.jpg">
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="noise" checked="true">
+            <span class="checkmark"></span>Noisy
+          </div>
+          <img class="example-image" id="noise" src="./img/example/original.jpg">
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="triangular_blur" checked="true">
+            <span class="checkmark"></span>Blurred
+          </div>
+          <img class="example-image" id="triangular_blur" src="./img/example/original.jpg">
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="lens_blur" checked="true">
+            <span class="checkmark"></span>Lens Blurred
+          </div>
+          <img class="example-image" id="lens_blur" src="./img/example/original.jpg">
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="swirl" checked="true">
+            <span class="checkmark"></span>Swirled
+          </div>
+          <img class="example-image" id="swirl" src="./img/example/original.jpg">
+        </label>
+        <label class="option-container">
+          <div>
+            <input type="checkbox" class="option-checkbox" value="pixelate" checked="true">
+            <span class="checkmark"></span>Pixelated
+          </div>
+          <img class="example-image" id="pixelate" src="./img/example/original.jpg">
+        </label>
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <pre style="font-size: 0.6em;">TenzerHack 2022. Created by<br/>"What Hackathon? I heard that there's food"<br/>(Andy Le, Cody Cao, Josh Huynh)</pre>
+        <div id="start-button" class="select-button">Start!</div>
+      </div>
+      <div id="error">You must pick at least one transformation to start the game</div>
+    </form>
+  </div>
+  <div id="credit">
+    <div id="scoreboard">
+      <span id="final_score" style="font-size:1.5em;"></span>
+      <div id="continue-button">Continue</div>
+    </div>
+  </div>
+  <div id="root">
+    <div id="navbar">
+      <span id="question-count"></span> 
+      <span id="time"></span>
+      <span id="score">Score: 0000</span>
+      <div id="did-you-know">Did you know? Peeler is a ceramicisit</div>
+    </div>
+    <div id="container">
+      <div id="left-container">
+        <div id="img-container">
+        </div>
+      </div>
+      <div id="answer-container">
+        <div id="answer1" class="answer">Answer 1</div>
+        <div id="answer2" class="answer">Answer 2</div>
+        <div id="answer3" class="answer">Answer 3</div>
+        <div id="answer4" class="answer">Answer 4</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
