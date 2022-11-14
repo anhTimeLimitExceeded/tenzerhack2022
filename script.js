@@ -79,6 +79,12 @@ $(document).ready(function(){
     startGame()
   });
 
+  $("#reset-button").click(function (event) {
+    $("#did-you-know").css("visibility", "hidden");
+    $("#credit").css("visibility", "hidden")
+    $("#form").css("visibility", "visible")
+  });
+
   $("#select-all").click(function (event) {
     checkboxes = document.getElementsByClassName('option-checkbox');
     for (let i = 0; i < checkboxes.length; i++) {
