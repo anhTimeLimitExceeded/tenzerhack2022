@@ -45,7 +45,7 @@ transformations = []
 freezeClick = false;
 questionCount = 1;
 maxQuestions = 5;
-roundTime = 59;
+roundTime = 60;
 score = 0;
 window.onload = function() {
   try {
@@ -80,9 +80,12 @@ $(document).ready(function(){
   });
 
   $("#reset-button").click(function (event) {
+    clearInterval(roundInterval)
+    img_container.innerHTML = '';
+    img.style.animation = '';
     $("#did-you-know").css("visibility", "hidden");
-    $("#credit").css("visibility", "hidden")
-    $("#form").css("visibility", "visible")
+    $("#credit").css("visibility", "hidden");
+    $("#form").css("visibility", "visible");
   });
 
   $("#select-all").click(function (event) {
@@ -210,30 +213,30 @@ function startQuestion() {
     timer = countdown,
     minutes = 0;
     seconds = 0;
-      roundInterval = setInterval(function () {
-        if (!css_transformation) {
-          ratio = timer/countdown
-          switch (transformation) {
-            case "brightness": brightness(canvas, texture, randomX, randomY, ratio); break;
-            case "noise": noise(canvas, texture, randomX, randomY, ratio); break;
-            case "triangular_blur": triangleBlur(canvas, texture, randomX, randomY, ratio); break;
-            case "lens_blur": lensBlur(canvas, texture, randomX, randomY, ratio); break;
-            case "swirl": swirl(canvas, texture, randomX, randomY, leftRight*ratio); break;
-            case "pixelate": pixelate(canvas, texture, randomX, randomY, ratio); break;
-          }
+    roundInterval = setInterval(function () {
+      if (!css_transformation) {
+        ratio = timer/countdown
+        switch (transformation) {
+          case "brightness": brightness(canvas, texture, randomX, randomY, ratio); break;
+          case "noise": noise(canvas, texture, randomX, randomY, ratio); break;
+          case "triangular_blur": triangleBlur(canvas, texture, randomX, randomY, ratio); break;
+          case "lens_blur": lensBlur(canvas, texture, randomX, randomY, ratio); break;
+          case "swirl": swirl(canvas, texture, randomX, randomY, leftRight*ratio); break;
+          case "pixelate": pixelate(canvas, texture, randomX, randomY, ratio); break;
         }
-      
-        minutes = parseInt((timer / 10) / 60, 10)
-        seconds = parseInt((timer / 10)  % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
-  
-        if (--timer < 0) {
-          endQuestion()
-        }
+      }
+    
+      minutes = parseInt((timer / 10) / 60, 10)
+      seconds = parseInt((timer / 10)  % 60, 10);
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.textContent = minutes + ":" + seconds;
 
-      }, 100);
+      if (--timer < 0) {
+        endQuestion()
+      }
+
+    }, 100);
   };
 }
 
@@ -258,7 +261,7 @@ function endQuestion() {
   img.style.animation = '';
   img_container.appendChild(img);
   right_answer.css( "background-color", "#00FF00" );
-  setTimeout(startQuestion, 5000);
+  setTimeout(startQuestion, 3000);
 }
 
 function getAnswers() {
